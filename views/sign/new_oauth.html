@@ -1,0 +1,51 @@
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+      <ul class='breadcrumb'>
+        <li><a href='/'>GIT</a><span class='divider'>/</span></li>
+        <li class='active'>Register</li>
+      </ul>
+    </div>
+    <div class='inner'>
+      <form id='signin_form' class='form-horizontal' action=<%= actionPath
+      %> method='post'>
+      <input type='hidden' name='_csrf' value='<%= csrf %>'/>
+      <input type='hidden' name='isnew' value='1'/>
+
+      <div class='control-group'>
+        <label class='control-label'>Use your GitHub account</label>
+
+        <div class='controls'>
+          <input type='submit' class='span-info' value="Register">
+        </div>
+      </div>
+      </form>
+
+      <form id='signin_form' class='form-horizontal' action=<%= actionPath
+      %> method='post'>
+      <div class='control-group'>
+        <label class='controls'>Or</label>
+      </div>
+      <div class='control-group'>
+        <label class='control-label' for='name'>Account</label>
+
+        <div class='controls'>
+          <input class='input-xlarge' id='name' name='name' size='30' type='text'/>
+        </div>
+      </div>
+      <div class='control-group'>
+        <label class='control-label' for='pass'>Password</label>
+
+        <div class='controls'>
+          <input class='input-xlarge' id='pass' name='pass' size='30' type='password'/>
+        </div>
+      </div>
+      <input type='hidden' name='_csrf' value='<%= csrf %>'/>
+
+      <div class='form-actions'>
+        <input type='submit' class='span-primary' value='Link to other accounts'/>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

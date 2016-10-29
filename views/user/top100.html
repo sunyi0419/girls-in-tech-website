@@ -1,0 +1,30 @@
+<%- partial('../sidebar') %>
+
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+      <ul class='breadcrumb'>
+        <li><a href='/'>GIT</a><span class='divider'>/</span></li>
+        <li class='active'>Rank Top100</li>
+      </ul>
+    </div>
+    <div class='inner'>
+      <% if(typeof(users) !== 'undefined' && users.length > 0){ %>
+      <table class='table table-condensed table-striped'>
+        <thead>
+          <th>#</th>
+          <th>UserName</th>
+          <th>Score</th>
+          <th>Posts</th>
+          <th>Replies</th>
+        </thead>
+        <tbody>
+        <%- partial('../user/top100_user',{collection:users,as:'user'}) %>
+        </tbody>
+      </table>
+      <% }else{ %>
+      <p>No user yet</p>
+      <% } %>
+    </div>
+  </div>
+</div>

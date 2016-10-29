@@ -1,0 +1,19 @@
+<%- partial('../sidebar') %>
+
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+      <ul class='breadcrumb'>
+        <li><a href='/'>GIT</a><span class='divider'>/</span></li>
+        <li class='active'>Community Star</li>
+      </ul>
+    </div>
+    <div class='inner'>
+      <% if(typeof(stars) !== 'undefined' && stars.length > 0){ %>
+      <%- partial('../user/user',{collection:stars,as:'user'}) %>
+      <% }else{ %>
+      <p>Not a community star yet</p>
+      <% } %>
+    </div>
+  </div>
+</div>

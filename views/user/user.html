@@ -1,0 +1,34 @@
+<div class='user'>
+  <div>
+    <a href="/user/<%= user.loginname %>">
+      <img class='user_avatar' src="<%= proxy(user.avatar_url) %>" title="<%= user.loginname %>"/>
+    </a>
+    <span class='user_name'><a class='dark' href="/user/<%= user.loginname %>"><%= user.loginname %></a></span>
+
+    <div class='space'></div>
+    <span class='col_fade'><%= user.follower_count %>'s followers </span>
+    <span class='space'></span>
+    <span class='col_fade'><%= user.following_count %> is following </span>
+  </div>
+  <div>
+		<span>
+			<a href='mailto:<%= user.email %>'>
+        <i class="fa fa-envelope-o" title='Email'></i>
+      </a>
+		</span>
+    <% if (user.url) { %>
+		<span>
+			<a href="<%= user.url %>" target='_blank'>
+        <i class="fa fa-home" title='Personal URL'></i>
+      </a>
+		</span>
+    <% } %>
+    <% if (user.weibo) { %>
+		<span>
+			<a href="<%= user.weibo %>" target='_blank'>
+        <i class="fa fa-weibo" title='Twitter'></i>
+      </a>
+		</span>
+    <% } %>
+  </div>
+</div>

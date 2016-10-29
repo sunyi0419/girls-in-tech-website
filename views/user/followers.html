@@ -1,0 +1,19 @@
+<%- partial('../sidebar') %>
+
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+      <ul class='breadcrumb'>
+        <li><a href='/'>GIT</a><span class='divider'>/</span></li>
+        <li class='active'>Members who follow <%= user.loginname %></li>
+      </ul>
+    </div>
+    <div class='inner'>
+      <% if (users.length > 0) { %>
+      <%- partial('../user/user', { collection: users, as: 'user' }) %>
+      <% } else { %>
+      <p>No one follow this member yet</p>
+      <% } %>
+    </div>
+  </div>
+</div>

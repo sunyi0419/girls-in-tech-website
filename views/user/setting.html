@@ -1,0 +1,148 @@
+<%- partial('../sidebar') %>
+
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+      <ul class='breadcrumb'>
+        <li><a href='/'>GIT</a><span class='divider'>/</span></li>
+        <li class='active'>Setting</li>
+      </ul>
+    </div>
+    <div class='inner'>
+      <% if(typeof(error) !== 'undefined' && error){ %>
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <strong><%= error %></strong>
+      </div>
+      <% } %>
+      <% if (typeof(success) !== 'undefined' && success) { %>
+      <div class="alert alert-success">
+        <strong><%= success %></strong>
+      </div>
+      <% } %>
+      <form id='setting_form' class='form-horizontal' action='/setting' method='post'>
+        <div class='control-group'>
+          <label class='control-label' for='name'>UserName</label>
+
+          <div class='controls'>
+            <input class='input-xlarge readonly' id='name' name='name' size='30' type='text' readonly='true'
+                   value="<%= loginname %>"/>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='email'>Email</label>
+
+          <div class='controls'>
+            <input class='input-xlarge readonly' id='email' name='email' size='30' type='text'
+                   readonly='true' value="<%= email %>"/>
+
+            <p>Avatar</p>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='url'>Personal Website</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' id='url' name='url' size='30' type='text' value="<%= typeof(url) !== 'undefined' ? url : '' %>"/>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='location'>Location</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' id='location' name='location' size='30' type='text'
+                   value="<%= typeof(location) !== 'undefined' ? location : '' %>"/>
+          </div>
+        </div>
+
+        <div class='control-group'>
+          <label class='control-label' for='weibo'>Twitter</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' id='weibo' name='weibo' size='30' type='text' value="<%= typeof(weibo) !== 'undefined' ? weibo : '' %>"
+                   placeholder="e.g. http://twitter.com/git"/>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='github'>GitHub</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' id='github' name='github' size='30' type='text'
+                   value="<%= typeof(githubUsername) !== 'undefined' ? '@' + githubUsername : '' %>" placeholder="@username" readonly="readonly" />
+            <p>Please login from GitHub to edit this section</p>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='signature'>Motto</label>
+
+          <div class='controls'>
+            <textarea class='input-xlarge' id='signature' name='signature' size='30'><%= typeof(signature) !== 'undefined' ? signature : "" %></textarea>
+          </div>
+        </div>
+        <input type='hidden' id='action' name='action' value='change_setting'/>
+        <input type='hidden' name='_csrf' value='<%= csrf %>'/>
+
+        <div class='form-actions'>
+          <input type='submit' class='span-primary submit_btn' data-loading-text="Saving.." value='Save'/>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>Change Password</span>
+    </div>
+    <div class='inner'>
+      <form id='change_pass_form' class='form-horizontal' action='/setting' method='post'>
+        <div class='control-group'>
+          <label class='control-label' for='old_pass'>recent password</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' type='password' id='old_pass' name='old_pass' size='30'/>
+          </div>
+        </div>
+        <div class='control-group'>
+          <label class='control-label' for='new_pass'>new password</label>
+
+          <div class='controls'>
+            <input class='input-xlarge' type='password' id='new_pass' name='new_pass' size='30'/>
+          </div>
+        </div>
+        <input type='hidden' id='action' name='action' value='change_password'/>
+        <input type='hidden' name='_csrf' value='<%= csrf %>'/>
+
+        <div class='form-actions'>
+          <input type='submit' class='span-primary submit_btn' data-loading-text="Changing.." value='Change Password'/>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>Access Token</span>
+    </div>
+    <div class='inner'>
+      <div>
+        <span>String：</span>
+        <%- accessToken %>
+      </div>
+      <div>
+        <span>QR Code：</span>
+        <span id="access-token-qrcode"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // qrcode generate
+  var accessToken = "<%- accessToken %>";
+  new QRCode(document.getElementById("access-token-qrcode"), {
+    text: accessToken,
+    width: 200,
+    height: 200,
+  });
+  // END qrcode generate
+</script>
